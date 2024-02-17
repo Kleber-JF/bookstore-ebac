@@ -16,10 +16,7 @@ class TestProductViewSet(APITestCase):
     def setUp(self):
         self.user = UserFactory()
 
-        self.product = ProductFactory(
-            title='pro controller',
-            price=200.00,
-        )
+        self.product = ProductFactory(title='pro controller', price=200.00)
 
     def test_get_all_product(self):
         response = self.client.get(
@@ -33,7 +30,7 @@ class TestProductViewSet(APITestCase):
         self.assertEqual(product_data[0]['price'], self.product.price)
         self.assertEqual(product_data[0]['active'], self.product.active)
 
-    def test_creat_product(self):
+    def test_create_product(self):
         category = CategoryFactory()
         data = json.dumps({
             'title': 'notebook',
