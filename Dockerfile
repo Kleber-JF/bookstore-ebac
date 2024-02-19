@@ -42,12 +42,15 @@ RUN apt-get update \
         build-essential
 
 # install poetry -respects $POETRY_VERSION & $POETRY_HOME
-RUN pip install poetry
+RUN pip install poetry==1.7.1
+# install postgres dependencies inside of Docker
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc
+
 
 # copy project requirement files here to ensure they will be cached.py
 WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
-
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
 RUN poetry install --no-dev
 
@@ -57,10 +60,11 @@ RUN poetry install --no-dev
 
 # quicker install as runtime deps are already installed
 RUN poetry install
+RUN poetry add psycopg2
 
 WORKDIR /app
 
-COPY . /app/
+COPY . /app
 
 EXPOSE 8000
 
