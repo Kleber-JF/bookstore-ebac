@@ -63,10 +63,9 @@ RUN poetry install --only main
 #COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 
 # quicker install as runtime deps are already installed
-RUN poetry install
-
-
 WORKDIR /app
+
+RUN poetry install
 
 COPY . /app/
 
