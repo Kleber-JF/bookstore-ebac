@@ -46,7 +46,7 @@ RUN pip install poetry==1.7.1
 # install postgres dependencies inside of Docker
 RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
-    && pip install psycopg2
+    && pip --no-cache-dir install psycopg2
 
 RUN apt-get -y install postgresql-client
 
@@ -64,6 +64,7 @@ RUN poetry install --no-dev
 
 # quicker install as runtime deps are already installed
 RUN poetry install
+
 
 WORKDIR /app
 
