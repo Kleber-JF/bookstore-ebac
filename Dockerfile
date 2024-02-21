@@ -65,6 +65,7 @@ RUN poetry install --no-dev
 # quicker install as runtime deps are already installed
 RUN poetry install
 
+
 WORKDIR /app
 
 COPY . /app
