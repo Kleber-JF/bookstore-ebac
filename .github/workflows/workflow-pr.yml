@@ -27,6 +27,10 @@ jobs:
               shell: bash
               run: python -m poetry install
 
+            - name: Making migrations
+              shell: bash
+              run: python manage.py migrate
+
             - name: Test
               run: |
                 poetry run python manage.py test
