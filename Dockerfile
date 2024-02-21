@@ -56,7 +56,7 @@ WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
 RUN touch README.md
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install --no-dev
+RUN poetry install --only main
 
 # copy in our built poetry + venv
 #COPY --from=builder-base $POETRY_HOME $POETRY_HOME
@@ -68,7 +68,7 @@ RUN poetry install
 
 WORKDIR /app
 
-COPY . /app
+COPY . /app/
 
 EXPOSE 8000
 
