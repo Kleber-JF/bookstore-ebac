@@ -35,7 +35,7 @@ jobs:
               run: |
                 poetry run python manage.py test
               env:
-                SECRET_KEY: foo
+                SECRET_KEY: 99k8i6-cqo=x4p*9%8-z+#s!-=
 
             - name: Wemake Python Styleguide
               uses: wemake-services/wemake-python-styleguide@0.18.0
