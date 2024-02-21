@@ -1,11 +1,10 @@
 name: Python Pull Request Workflow
 
 on: [pull_request]
-
 jobs:
     qa:
         name: Quality check
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v1
             - name: Set up Python
@@ -28,11 +27,17 @@ jobs:
               shell: bash
               run: python -m poetry install
 
+            - name: Making migrations
+              shell: bash
+              run: python manage.py migrate
+
             - name: Test
               run: |
                 poetry run python manage.py test
+              env:
+                SECRET_KEY: foo
 
-            - name: Wemanke Python Styleguide
+            - name: Wemake Python Styleguide
               uses: wemake-services/wemake-python-styleguide@0.18.0
               continue-on-error: true
               with:
