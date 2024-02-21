@@ -55,7 +55,7 @@ RUN apt-get -y install postgresql-client
 WORKDIR $PYSETUP_PATH
 COPY README.md poetry.lock pyproject.toml ./
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install --only main
+RUN poetry install --no-dev
 
 # copy in our built poetry + venv
 #COPY --from=builder-base $POETRY_HOME $POETRY_HOME
