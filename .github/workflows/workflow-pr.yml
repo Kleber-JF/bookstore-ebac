@@ -34,6 +34,8 @@ jobs:
             - name: Test
               run: |
                 poetry run python manage.py test
+              env:
+                SECRET_KEY: foo
 
             - name: Wemanke Python Styleguide
               uses: wemake-services/wemake-python-styleguide@0.18.0
