@@ -38,3 +38,4 @@ jobs:
             poetry run python manage.py test
           env:
             SECRET_KEY: 99k8i6-cqo=x4p*9%8-z+#s!-=
+            
