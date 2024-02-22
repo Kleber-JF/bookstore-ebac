@@ -57,6 +57,7 @@ COPY README.md poetry.lock pyproject.toml ./
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
 RUN poetry install --no-dev
 
+
 # copy in our built poetry + venv
 #COPY --from=builder-base $POETRY_HOME $POETRY_HOME
 #COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
